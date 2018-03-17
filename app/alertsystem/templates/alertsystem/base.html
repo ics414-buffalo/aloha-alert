@@ -5,11 +5,25 @@
     <meta charset="UTF-8">
     <title>Aloha Alert</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+    <link rel="stylesheet" href="{% static "alertsystem/style.css" %}">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
 </head>
 <header>
-    
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui container">
+            <div class="ui large inverted secondary pointing menu">
+                <a class="active item">Home</a>
+                <a class="item">Alerts</a>
+                <a class="item">How to Use</a>
+            </div>
+        </div>
+        <div class="ui text container">
+            <h1 class="ui inverted header">
+                Aloha Alert
+            </h1>
+        </div>
+    </div>
 </header>
 {% block content %}
 {% endblock %}

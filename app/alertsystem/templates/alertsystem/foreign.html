@@ -1,0 +1,31 @@
+{% extends "alertsystem/base.html" %}
+{% block content %}
+{% load static %}
+<body>
+<div class="ui center aligned container">
+{#  <h1 style="font-size: 8em">Hawaii EMS</h1>#}
+  <div class="ui grid" style="margin-top: 1em">
+    <div class="eight wide column">
+      <a class="ui centered raised link card" href="app/foreign/foreign.html">
+        <div class="image">
+          <img src="{% static "alertsystem/missile.png" %}">
+        </div>
+        <div class="content">
+          <h3>Foreign Threat</h3>
+        </div>
+      </a>
+    </div>
+    <div class="eight wide column">
+      <a class="ui centered raised link card" href="">
+        <div class="image">
+          <img src="{% static "alertsystem/cancel.png" %}">
+        </div>
+        <div class="content">
+          <h3>Cancel Alerts</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+{% endblock %}

@@ -6,7 +6,7 @@
 {#  <h1 style="font-size: 8em">Hawaii EMS</h1>#}
   <div class="ui grid" style="margin-top: 1em">
     <div class="four wide column">
-      <a class="ui raised link card" href="/">
+      <a class="ui raised link card" href="{% url "amber" %}">
         <div class="image">
           <img src="{% static "alertsystem/amber_alert.png" %}">
         </div>
@@ -26,7 +26,7 @@
       </a>
     </div>
     <div class="four wide column">
-      <a class="ui raised link card" href="{% url "alertsystem:foreign" %}">
+      <a class="ui raised link card" href="app/foreign/foreign.html">
         <div class="image">
           <img src="{% static "alertsystem/missile.png" %}">
         </div>
