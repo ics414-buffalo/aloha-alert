@@ -3,7 +3,6 @@
     {% load static %}
     <body>
     <div class="ui center aligned container">
-        {#  <h1 style="font-size: 8em">Hawaii EMS</h1>#}
         <div class="ui two item menu" style="margin-top: 1em">
             <a class="item">
                 <div class="ui huge header">REAL</div>
@@ -14,7 +13,7 @@
         </div>
         <div class="ui grid" style="margin-top: 1em">
             <div class="eight wide column">
-                <a class="ui special centered link card" href="/">
+                <a class="ui special centered link card" href="{% url "alertsystem:real_foreign" %}">
                     <div class="blurring dimmable image">
                         <div class="ui dimmer">
                             <div class="content">
