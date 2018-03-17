@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="{% static "alertsystem/style.css" %}">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
+    <script>
+        $('.ui .item').on('click', function() {
+            $('.ui .item').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
 </head>
 <header>
     <div class="ui inverted vertical masthead center aligned segment">
         <div class="ui container">
-            <div class="ui large inverted secondary pointing menu">
-                <a class="active item">Home</a>
+            <div class="ui large inverted three item pointing menu">
+                <a class="item">Home</a>
                 <a class="item">Alerts</a>
                 <a class="item">How to Use</a>
             </div>
@@ -27,6 +33,11 @@
 </header>
 {% block content %}
 {% endblock %}
+<script>
+    $('.special.card .image').dimmer({
+        on: 'hover'
+    });
+</script>
 <footer>
 
 </footer>

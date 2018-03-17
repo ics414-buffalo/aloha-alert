@@ -1,2 +1,2 @@
-# aloha-alert
+# Aloha Alert
 Hawaii Alert System Project
