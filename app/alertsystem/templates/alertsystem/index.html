@@ -1,5 +1,6 @@
-{% extends "base.html" %}
+{% extends "alertsystem/base.html" %}
 {% block content %}
+{% load static %}
 <body>
 <div class="ui center aligned container">
   <h1 style="font-size: 8em">Hawaii EMS</h1>
@@ -7,7 +8,7 @@
     <div class="four wide column">
       <a class="ui link card" href="app/amber/amber.html">
         <div class="image">
-          <img src="assets/amber-alert.png">
+          <img src="{% static 'alertsystem/amber_alert.png' %}">
         </div>
         <div class="content">
           <h3>Amber Alert</h3>
@@ -17,7 +18,7 @@
     <div class="four wide column">
       <a class="ui link card" href="app/natural/natural.html">
         <div class="image">
-          <img src="assets/tsunami.png">
+          <img src="{% static 'alertsystem/tsunami.png' %}">
         </div>
         <div class="content">
           <h3>Natural Disaster</h3>
@@ -27,7 +28,7 @@
     <div class="four wide column">
       <a class="ui link card" href="app/foreign/foreign.html">
         <div class="image">
-          <img src="assets/missile.png">
+          <img src="{% static 'alertsystem/missile.png' %}">
         </div>
         <div class="content">
           <h3>Foreign Threat</h3>
@@ -37,7 +38,7 @@
     <div class="four wide column">
       <a class="ui link card" href="">
         <div class="image">
-          <img src="assets/cancel.png">
+          <img src="{% static 'alertsystem/cancel.png' %}">
         </div>
         <div class="content">
           <h3>Cancel Alerts</h3>
