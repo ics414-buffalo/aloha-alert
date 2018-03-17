@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+<div class="ui center aligned container">
+  <h1 style="font-size: 8em">Hawaii EMS</h1>
+  <div class="ui grid">
+    <div class="four wide column">
+      <a class="ui link card" href="app/amber/amber.html">
+        <div class="image">
+          <img src="assets/amber-alert.png">
+        </div>
+        <div class="content">
+          <h3>Amber Alert</h3>
+        </div>
+      </a>
+    </div>
+    <div class="four wide column">
+      <a class="ui link card" href="app/natural/natural.html">
+        <div class="image">
+          <img src="assets/tsunami.png">
+        </div>
+        <div class="content">
+          <h3>Natural Disaster</h3>
+        </div>
+      </a>
+    </div>
+    <div class="four wide column">
+      <a class="ui link card" href="app/foreign/foreign.html">
+        <div class="image">
+          <img src="assets/missile.png">
+        </div>
+        <div class="content">
+          <h3>Foreign Threat</h3>
+        </div>
+      </a>
+    </div>
+    <div class="four wide column">
+      <a class="ui link card" href="">
+        <div class="image">
+          <img src="assets/cancel.png">
+        </div>
+        <div class="content">
+          <h3>Cancel Alerts</h3>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+{% endblock %}
