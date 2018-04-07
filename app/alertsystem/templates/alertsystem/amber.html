@@ -1,51 +1,55 @@
 {% extends "alertsystem/base.html" %}
 {% block content %}
-{% load static %}
-<body>
-<div class="ui center aligned container">
-{#  <h1 style="font-size: 8em">Hawaii EMS</h1>#}
-  <div class="ui grid" style="margin-top: 1em">
-    <div class="four wide column">
-      <a class="ui raised link card" href="{% url "amber" %}">
-        <div class="image">
-          <img src="{% static "alertsystem/amber_alert.png" %}">
+    {% load static %}
+    <body>
+    <div class="ui center aligned container">
+        <div class="ui two item menu" style="margin-top: 1em">
+            <a class="item">
+                <div class="ui huge header">REAL</div>
+            </a>
+            <a class="item">
+                <div class="ui huge header">TEST</div>
+            </a>
         </div>
-        <div class="content">
-          <h3>Amber Alert</h3>
+        <div class="ui grid" style="margin-top: 1em">
+            <div class="eight wide column">
+                <a class="ui special centered link card" href="{% url "alertsystem:real_foreign" %}">
+                    <div class="blurring dimmable image">
+                        <div class="ui dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui inverted button">Select Real Threat</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="{% static "alertsystem/missile.png" %}">
+                    </div>
+                    <div class="content">
+                        <div class="header">Missile Threat</div>
+                        <div class="header">REAL</div>
+                    </div>
+                </a>
+            </div>
+            <div class="eight wide column">
+                <a class="ui special centered link card" href="{% url "alertsystem:test_foreign" %}">
+                    <div class="blurring dimmable image">
+                        <div class="ui dimmer">
+                            <div class="content">
+                                <div class="center">
+                                    <div class="ui inverted button">Select Test Threat</div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="{% static "alertsystem/testMissile.png" %}">
+                    </div>
+                    <div class="content">
+                        <div class="header">Missile Threat</div>
+                        <div class="header">TEST</div>
+                    </div>
+                </a>
+            </div>
         </div>
-      </a>
+        <a class="massive ui negative button" href="{% url "alertsystem:index" %}">Go Back</a>
     </div>
-    <div class="four wide column">
-      <a class="ui raised link card" href="app/natural/natural.html">
-        <div class="image">
-          <img src="{% static "alertsystem/tsunami.png" %}">
-        </div>
-        <div class="content">
-          <h3>Natural Threat</h3>
-        </div>
-      </a>
-    </div>
-    <div class="four wide column">
-      <a class="ui raised link card" href="app/foreign/foreign.html">
-        <div class="image">
-          <img src="{% static "alertsystem/missile.png" %}">
-        </div>
-        <div class="content">
-          <h3>Foreign Threat</h3>
-        </div>
-      </a>
-    </div>
-    <div class="four wide column">
-      <a class="ui raised link card" href="">
-        <div class="image">
-          <img src="{% static "alertsystem/cancel.png" %}">
-        </div>
-        <div class="content">
-          <h3>Cancel Alerts</h3>
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
-</body>
+    </body>
 {% endblock %}

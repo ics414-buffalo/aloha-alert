@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
 from .forms import AlertForm
 import random as rand
 
@@ -49,6 +50,20 @@ def real_foreign_sent(request):
     context = {
         'title': 'Real Missile Threat'
     }
+    # Sending Message to Emails (Works with valid emails to emails)
+    send_mail(
+        'WARNING: Real Missle Threat',
+        'Incoming missile from North Korea. Seek immediate shelter on higher ground',
+        'example@gmail.com',  # Add a Valid Email Here
+        ['secondexample@gmail.com'],  # Send to a list of Emails
+    )
+    # Sending Message to Phone Numbers (Works with valid numbers and emails)
+    send_mail(
+        'TEST WARNING: Fake Missle Threat',
+        'Test for incoming missle from North Korea',
+        'example@gmail.com',  # Add a Valid Email Here
+        ['phonenumber@tmomail.net'],  # Send to a T-Mobile Phone Number
+    )
     return render(request, 'alertsystem/sent_threat.html', context=context)
 
 
@@ -83,4 +98,19 @@ def test_foreign_sent(request):
     context = {
         'title': 'Test Missile Threat'
     }
+    # Sending Message to Emails (Works with valid emails to emails)
+    send_mail(
+        'WARNING: Real Missle Threat',
+        'Incoming missile from North Korea. Seek immediate shelter on higher ground',
+        'example@gmail.com',  # Add a Valid Email Here
+        ['secondexample@gmail.com'],  # Send to a list of Emails
+    )
+    # Sending Message to Phone Numbers (Works with valid numbers and emails)
+    send_mail(
+        'TEST WARNING: Fake Missle Threat',
+        'Test for incoming missle from North Korea',
+        'example@gmail.com', # Add a Valid Email Here
+        ['phonenumber@tmomail.net'], # Send to a T-Mobile Phone Number
+     )
+    print("Message sent to all Phones on Hawaii")
     return render(request, 'alertsystem/sent_threat.html', context=context)
