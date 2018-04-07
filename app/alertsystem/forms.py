@@ -1,5 +1,5 @@
 from django import forms
-import random as rand
+from django.http import HttpResponseRedirect
 
 class AlertForm(forms.Form):
 
@@ -16,6 +16,13 @@ class AlertForm(forms.Form):
                 'placeholder': self.send_text
             }
         )
+
+    def clean_validation_text(self):
+        validation_text = self.cleaned_data['validation_text']
+        print(self.send_text)
+        if validation_text != self.send_text:
+            raise forms.ValidationError("Incorrect verification message!")
+        return validation_text
 
 
 

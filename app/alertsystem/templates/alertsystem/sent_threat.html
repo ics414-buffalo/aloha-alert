@@ -3,29 +3,10 @@
     {% load static %}
     <body>
     <div class="ui center aligned container">
-        <div class="ui centered red huge header">
-            Are you sure this is a real attack? <br>
-            If so, type "{{ send_text }}" and click enter <br>
-            to send warning message.
-        </div>
-        <form class="ui form" method="post" style="margin: 1em 1em 1em 1em">
-            {% csrf_token %}
+        <div id="success-text">
+            <h1 id="success"> WARNING SUCCESSFULLY SENT </h1>
 
-            <div class="ui center aligned grid">
-                <div class="five wide column">
-                    <img class="ui fluid circular image" src="{% static "alertsystem/rocket2.png" %}">
-                </div>
-                <div class="six wide column">
-                    <div class="field">
-                        <input type="text" placeholder="{{ send_text }}">
-                    </div>
-                </div>
-                <div class="five wide column">
-                    <img class="ui fluid circular image" src="{% static "alertsystem/rocket2.png" %}">
-                </div>
-            </div>
-            <input class="ui massive primary button" type="submit" value="Submit">
-        </form>
+        </div>
     </div>
     </body>
 {% endblock %}

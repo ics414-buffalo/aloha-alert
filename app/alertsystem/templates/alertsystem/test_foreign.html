@@ -4,16 +4,15 @@
     <body>
     <div class="ui center aligned container">
         <div class="ui centered red huge header">
-            Are you sure this is a real threat? <br>
-            If so, type "{{ send_text }}" and click Submit <br>
-            to send warning message.
+            This is a test message. <br>
+            If you would like to send this message, type "{{ send_text }}" and click Submit <br>
         </div>
         <form class="ui form" method="post" style="margin: 1em 1em 1em 1em">
             {% csrf_token %}
 
             <div class="ui center aligned grid">
                 <div class="five wide column">
-                    <img class="ui fluid circular image" src="{% static "alertsystem/rocket2.png" %}">
+                    <img class="ui fluid circular image" src="{% static "alertsystem/testMissile.png" %}">
                 </div>
                 <div class="six wide column">
                     <div class="field">
@@ -22,12 +21,11 @@
                     </div>
                 </div>
                 <div class="five wide column">
-                    <img class="ui fluid circular image" src="{% static "alertsystem/rocket2.png" %}">
+                    <img class="ui fluid circular image" src="{% static "alertsystem/testMissile.png" %}">
                 </div>
             </div>
-
+            <a class="massive ui negative button" style="margin: 3em 0 0 0" href="{% url "alertsystem:foreign" %}">Go Back</a>
         </form>
-        <a class="massive ui negative button" style="margin: 3em 0 0 0" href="{% url "alertsystem:foreign" %}">Go Back</a>
     </div>
     </body>
 {% endblock %}

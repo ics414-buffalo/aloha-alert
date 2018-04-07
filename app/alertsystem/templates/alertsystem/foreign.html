@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="eight wide column">
-                <a class="ui special centered link card" href="/">
+                <a class="ui special centered link card" href="{% url "alertsystem:test_foreign" %}">
                     <div class="blurring dimmable image">
                         <div class="ui dimmer">
                             <div class="content">
@@ -49,7 +49,7 @@
                 </a>
             </div>
         </div>
-        <a class="massive ui negative button" href="{% url "alertsystem:index" %}">Cancel</a>
+        <a class="massive ui negative button" href="{% url "alertsystem:index" %}">Go Back</a>
     </div>
     </body>
 {% endblock %}

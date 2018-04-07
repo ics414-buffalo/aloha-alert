@@ -19,7 +19,7 @@
     <div class="ui inverted vertical masthead center aligned segment">
         <div class="ui container">
             <div class="ui large inverted three item pointing menu">
-                <a class="item">Home</a>
+                <a class="item" href="{% url "alertsystem:index" %}">Home</a>
                 <a class="item">Alerts</a>
                 <a class="item">How to Use</a>
             </div>
@@ -31,8 +31,11 @@
         </div>
     </div>
 </header>
-{% block content %}
-{% endblock %}
+<div id="alertwrapper">
+   {% block content %}
+       If this text is visible, something is wrong with the system
+    {% endblock %}
+</div>
 <script>
     $('.special.card .image').dimmer({
         on: 'hover'

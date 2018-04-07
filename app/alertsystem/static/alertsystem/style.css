@@ -1,3 +1,11 @@
+#alertwrapper {
+    background: url('mountain.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .hidden.menu {
     display: none;
 }
@@ -86,6 +94,10 @@
 
 .verification-text {
     font-size: 3.5em;
+}
+
+#success {
+    font-size: 3000em !important;
 }
 
 
