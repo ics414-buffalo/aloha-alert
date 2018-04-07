@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from .forms import AlertForm
 import random as rand
 
 
@@ -17,10 +19,26 @@ def foreign(request):
 
 
 def real_foreign(request):
-    send_text = ["SEND", "CONFIRM", "VERIFY", "ALERT"]
+    send_text_list = ["SEND", "CONFIRM", "VERIFY", "ALERT"]
+    send_text = send_text_list[rand.randint(0, len(send_text_list) - 1)]
+    # if this is a POST request we,  need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': send_text})
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = AlertForm(**{'send_text': send_text})
     context = {
         'title': "Real Missile Threat",
-        'send_text': send_text[rand.randint(0, len(send_text) - 1)],
+        'send_text': send_text,
+        'validation_form': form,
     }
     return render(request, 'alertsystem/real_foreign.html', context=context)
 
