@@ -15,34 +15,38 @@
         });
     </script>
 </head>
-<header style="margin-bottom: 1em;">
-    <div class="ui inverted vertical masthead center aligned segment">
-        <div class="ui container">
-            <div class="ui large inverted three item pointing menu">
-                <a class="item" href="{% url "alertsystem:index" %}">Home</a>
-                <a class="item">Alerts</a>
-                <a class="item">How to Use</a>
+<div id="alertwrapper">
+    <header>
+        <div class="ui inverted vertical masthead center aligned segment">
+            <div class="ui container">
+                {#                <img src="{% static "alertsystem/state-of-hawaii-logo.png" %}">#}
+                <div class="ui large inverted three item pointing menu">
+                    <a class="item" href="{% url "alertsystem:index" %}">Home</a>
+                    <a class="item">Alerts</a>
+                    <a class="item">How to Use</a>
+                </div>
+                <div class="ui text segment">
+                    <h1 class="ui header">
+                        {{ title }}
+                    </h1>
+                </div>
             </div>
         </div>
-        <div class="ui text container">
-            <h1 class="ui inverted header">
-                {{ title }}
-            </h1>
-        </div>
+    </header>
+    <div id="contentwrapper" style="margin-top: 2em">
+        {% block content %}
+            If this text is visible, something is wrong with the system
+        {% endblock %}
     </div>
-</header>
-<div id="alertwrapper">
-   {% block content %}
-       If this text is visible, something is wrong with the system
-    {% endblock %}
-</div>
-<script>
-    $('.special.card .image').dimmer({
-        on: 'hover'
-    });
-</script>
-<footer>
+    <script>
+        $('.special.card .image').dimmer({
+            on: 'hover'
+        });
+    </script>
+    <footer>
 
-</footer>
+    </footer>
+</div>
+
 </html>
 

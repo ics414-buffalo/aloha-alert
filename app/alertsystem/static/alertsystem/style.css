@@ -4,6 +4,13 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+
+.confirmation.image {
+    border-color: black;
+    border-width: 0.5em;
 }
 
 .hidden.menu {
@@ -22,7 +29,6 @@
 }
 .masthead h1.ui.header {
     margin-top: 0.25em;
-    margin-bottom: 0em;
     font-size: 4.5em;
     font-weight: normal;
     font-family: "Verdana", sans-serif;
@@ -33,7 +39,7 @@
 }
 
 .ui.vertical.stripe {
-    padding: 8em 0em;
+    padding: 8em;
 }
 .ui.vertical.stripe h3 {
     font-size: 2em;
