@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from .forms import AlertForm
@@ -102,15 +102,15 @@ def test_foreign_sent(request):
     send_mail(
         'WARNING: Real Missle Threat',
         'Incoming missile from North Korea. Seek immediate shelter on higher ground',
-        'example@gmail.com',  # Add a Valid Email Here
-        ['secondexample@gmail.com'],  # Send to a list of Emails
+        'electronsean808@gmail.com',  # Add a Valid Email Here
+        ['vdirenzo@hawaii.edu'],  # Send to a list of Emails
     )
     # Sending Message to Phone Numbers (Works with valid numbers and emails)
     send_mail(
         'TEST WARNING: Fake Missle Threat',
         'Test for incoming missle from North Korea',
-        'example@gmail.com', # Add a Valid Email Here
-        ['phonenumber@tmomail.net'], # Send to a T-Mobile Phone Number
+        'electronsean808@gmail.com', # Add a Valid Email Here
+        ['8088409878@tmomail.net'], # Send to a T-Mobile Phone Number
      )
     print("Message sent to all Phones on Hawaii")
     return render(request, 'alertsystem/sent_threat.html', context=context)
