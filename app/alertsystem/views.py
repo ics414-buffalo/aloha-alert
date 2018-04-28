@@ -322,7 +322,7 @@ def real_foreign_sent(request):
 
 
 def test_foreign(request):
-    SEND_TEXT = 'TEST MISSILE ALERT'
+    SEND_TEXT = 'TEST FOREIGN ALERT'
     BASE_CONTEXT = {
         'send_text': SEND_TEXT
     }
