@@ -6,7 +6,7 @@ class AlertForm(forms.Form):
 
     validation_text = forms.CharField(
         label='',
-        max_length=15,
+        max_length=50,
     )
 
     def __init__(self, *args, **kwargs):
@@ -30,7 +30,7 @@ class AmberAlertForm(forms.ModelForm):
 
     validation_text = forms.CharField(
         label='',
-        max_length=15,
+        max_length=50,
     )
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)

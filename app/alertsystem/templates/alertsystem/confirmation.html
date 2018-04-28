@@ -12,8 +12,9 @@
             <div class="six wide column">
                 <div class="ui centered text container segment">
                     <div class="ui centered red header">
-                        This is a {{ message_type }} message <br>
-                        If you would like to send this message, type "{{ send_text }}" and click Submit <br>
+                        This is a {{ message_type }} alert <br>
+                        If you would like to send this alert, type
+                        <p class="ui blue header">{{ send_text }}</p> and click Submit <br>
                     </div>
                     <form class="ui form" method="post">
                         {% csrf_token %}

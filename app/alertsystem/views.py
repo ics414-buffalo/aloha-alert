@@ -33,6 +33,10 @@ def amber(request):
 
 
 def real_amber(request):
+    SEND_TEXT = 'REAL AMBER ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     #amber = get_object_or_404(AmberAlertModel)
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
@@ -67,6 +71,10 @@ def real_amber_sent(request, amber_alert_id):
 
 
 def test_amber(request):
+    SEND_TEXT = 'TEST AMBER ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
@@ -119,6 +127,10 @@ def tsunami(request):
 
 
 def real_tsunami(request):
+    SEND_TEXT = 'REAL TSUNAMI ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
@@ -149,6 +161,10 @@ def real_tsunami_sent(request):
 
 
 def test_tsunami(request):
+    SEND_TEXT = 'TEST TSUNAMI ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
@@ -191,6 +207,10 @@ def hurricane(request):
 
 
 def real_hurricane(request):
+    SEND_TEXT = 'REAL HURRICANE ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
@@ -221,6 +241,10 @@ def real_hurricane_sent(request):
 
 
 def test_hurricane(request):
+    SEND_TEXT = 'TEST HURRICANE ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
@@ -263,6 +287,10 @@ def foreign(request):
 
 
 def real_foreign(request):
+    SEND_TEXT = 'REAL MISSILE ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
@@ -294,6 +322,10 @@ def real_foreign_sent(request):
 
 
 def test_foreign(request):
+    SEND_TEXT = 'TEST MISSILE ALERT'
+    BASE_CONTEXT = {
+        'send_text': SEND_TEXT
+    }
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
