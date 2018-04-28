@@ -2,8 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from .forms import AlertForm
-import random as rand
 
+
+SEND_TEXT = 'CONFIRM'
+EMAIL = 'electronsean808@gmail.com'
+
+BASE_CONTEXT = {
+    'send_text': SEND_TEXT
+}
 
 # Create your views here.
 def index(request):
@@ -20,97 +26,88 @@ def foreign(request):
 
 
 def real_foreign(request):
-    send_text = "CONFIRM"
-    # if this is a POST request we,  need to process the form data
+    # If this is a POST request we, need to process the form data
     if request.method == 'POST':
-
-        # create a form instance and populate it with data from the request:
-        form = AlertForm(request.POST, **{'send_text': send_text})
-        # check whether it's valid:
-
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
+            # Process the data in form.cleaned_data as required
             # redirect to a new URL:
             return HttpResponseRedirect('sent')
-
-
-    # if a GET (or any other method) we'll create a blank form
+    # If a GET (or any other method) we'll create a blank form
     else:
-        form = AlertForm(**{'send_text': send_text})
-    context = {
-        'title': "Real Missile Threat",
-        'send_text': send_text,
-        'validation_form': form,
-    }
-    return render(request, 'alertsystem/real_foreign.html', context=context)
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Real Missile Threat'
+    context['message_type'] = 'real'
+    context['image'] = 'alertsystem/rocket2.png'
+    context['parent_url'] = 'alertsystem:foreign'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
 
 
 def real_foreign_sent(request):
-    context = {
-        'title': 'Real Missile Threat'
-    }
-    # Sending Message to Emails (Works with valid emails to emails)
-    send_mail(
-        'WARNING: Real Missle Threat',
-        'Incoming missile from North Korea. Seek immediate shelter on higher ground',
-        'example@gmail.com',  # Add a Valid Email Here
-        ['secondexample@gmail.com'],  # Send to a list of Emails
-    )
-    # Sending Message to Phone Numbers (Works with valid numbers and emails)
-    send_mail(
-        'TEST WARNING: Fake Missle Threat',
-        'Test for incoming missle from North Korea',
-        'example@gmail.com',  # Add a Valid Email Here
-        ['phonenumber@tmomail.net'],  # Send to a T-Mobile Phone Number
-    )
+    title = 'Real Missile Threat'
+    name = 'WARNING: Real Missle Threat'
+    message = 'Incoming missile from North Korea. Seek immediate shelter on higher ground'
+    context = _send_messages(title=title, name=name, message=message)
+
     return render(request, 'alertsystem/sent_threat.html', context=context)
 
 
 def test_foreign(request):
-    send_text = "CONFIRM"
-    # if this is a POST request we,  need to process the form data
+    # If this is a POST request we, need to process the form data
     if request.method == 'POST':
-
-        # create a form instance and populate it with data from the request:
-        form = AlertForm(request.POST, **{'send_text': send_text})
-        # check whether it's valid:
-
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
+            # Process the data in form.cleaned_data as required
             # redirect to a new URL:
             return HttpResponseRedirect('sent')
-
-
-    # if a GET (or any other method) we'll create a blank form
+    # If a GET (or any other method) we'll create a blank form
     else:
-        form = AlertForm(**{'send_text': send_text})
-    context = {
-        'title': "Test Missile Threat",
-        'send_text': send_text,
-        'validation_form': form,
-    }
-    return render(request, 'alertsystem/test_foreign.html', context=context)
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Test Missile Threat'
+    context['message_type'] = 'test'
+    context['image'] = 'alertsystem/testMissile.png'
+    context['parent_url'] = 'alertsystem:foreign'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
 
 
 def test_foreign_sent(request):
-    context = {
-        'title': 'Test Missile Threat'
-    }
+    title = 'Test Missile Threat'
+    name = 'TEST WARNING: Fake Missile Threat'
+    message = 'THIS IS A DRILL. Incoming missile from North Korea. Seek immediate shelter on higher ground'
+    context = _send_messages(title=title, name=name, message=message)
+
+    return render(request, 'alertsystem/sent_threat.html', context=context)
+
+
+def _send_messages(title=None, name=None, message=None):
     # Sending Message to Emails (Works with valid emails to emails)
     send_mail(
-        'WARNING: Real Missle Threat',
-        'Incoming missile from North Korea. Seek immediate shelter on higher ground',
-        'electronsean808@gmail.com',  # Add a Valid Email Here
-        ['vdirenzo@hawaii.edu'],  # Send to a list of Emails
+        name,
+        message,
+        EMAIL,  # Add a Valid Email Here
+        ['lenj@hawaii.edu'],  # Send to a list of Emails
     )
     # Sending Message to Phone Numbers (Works with valid numbers and emails)
     send_mail(
-        'TEST WARNING: Fake Missle Threat',
-        'Test for incoming missle from North Korea',
-        'electronsean808@gmail.com', # Add a Valid Email Here
-        ['8088409878@tmomail.net'], # Send to a T-Mobile Phone Number
-     )
-    print("Message sent to all Phones on Hawaii")
-    return render(request, 'alertsystem/sent_threat.html', context=context)
+        name,
+        message,
+        EMAIL,  # Add a Valid Email Here
+        ['8088409878@tmomail.net'],  # Send to a T-Mobile Phone Number
+    )
+    print("%s sent to all phones, news stations, televisions, radios, and sirens on Hawaii" % title)
+    context = {
+        'title': title,
+        'name': name,
+        'message': message,
+    }
+
+    return context
+

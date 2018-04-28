@@ -3,9 +3,21 @@
     {% load static %}
     <body>
     <div class="ui center aligned container">
-        <div id="success-text">
-            <h1 id="success"> WARNING SUCCESSFULLY SENT </h1>
+        <div class="ui center aligned grid">
+            <div class="eight wide column">
+                <div class="ui text container segment">
+                    <div class="ui inverted text segment">
+                        <h1 class="ui centered header"> WARNING SUCCESSFULLY SENT </h1>
+                    </div>
+                    <h2 class="ui centered header">Message Sent:</h2>
+                    <div class="ui inverted yellow text segment">
+                        <h3 class="ui centered header">{{ warning }}</h3>
+                        <h4>{{ message }}</h4>
+                    </div>
 
+                    <a class="massive ui fluid inverted green button" style="margin: 3em 0 0 0" href="{% url "alertsystem:index" %}">Go Back to Home</a>
+                </div>
+            </div>
         </div>
     </div>
     </body>

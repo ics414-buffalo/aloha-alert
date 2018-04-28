@@ -19,7 +19,7 @@ class AlertForm(forms.Form):
 
     def clean_validation_text(self):
         validation_text = self.cleaned_data['validation_text']
-        print(self.send_text)
+        # print(self.send_text)
         if validation_text != self.send_text:
             raise forms.ValidationError("Incorrect verification message!")
         return validation_text
