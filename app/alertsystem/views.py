@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, Http404
 from django.core.mail import send_mail
-from .forms import AlertForm
+from .forms import AlertForm, AmberAlertForm
+from .models import AmberAlertModel
 
 
 SEND_TEXT = 'CONFIRM'
@@ -32,18 +33,20 @@ def amber(request):
 
 
 def real_amber(request):
+    #amber = get_object_or_404(AmberAlertModel)
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
-        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        form = AmberAlertForm(request.POST, **{'send_text': SEND_TEXT})
         # Check whether it's valid:
         if form.is_valid():
+            alert = form.save()
             # Process the data in form.cleaned_data as required
             # redirect to a new URL:
-            return HttpResponseRedirect('sent')
+            return HttpResponseRedirect('sent/' + str(alert.id))
     # If a GET (or any other method) we'll create a blank form
     else:
-        form = AlertForm(**{'send_text': SEND_TEXT})
+        form = AmberAlertForm(**{'send_text': SEND_TEXT})
     context = BASE_CONTEXT
     context['title'] = 'Real Amber Alert'
     context['message_type'] = 'real'
@@ -53,19 +56,30 @@ def real_amber(request):
     return render(request, 'alertsystem/confirmation.html', context=context)
 
 
+def real_amber_sent(request, amber_alert_id):
+    amber_alert = get_object_or_404(AmberAlertModel, pk=amber_alert_id)
+    title = 'Real Amber Alert'
+    name = 'WARNING: Real Amber Alert'
+    message = '%s %s, Age: %d, is currently missing. If you know of their whereabouts please contact 911 immediately' \
+              % (amber_alert.first_name, amber_alert.last_name, amber_alert.age)
+    context = _send_messages(title=title, name=name, message=message)
+    return render(request, 'alertsystem/sent.html', context=context)
+
+
 def test_amber(request):
     # If this is a POST request we, need to process the form data
     if request.method == 'POST':
         # Create a form instance and populate it with data from the request:
-        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        form = AmberAlertForm(request.POST, **{'send_text': SEND_TEXT})
         # Check whether it's valid:
         if form.is_valid():
+            alert = form.save()
             # Process the data in form.cleaned_data as required
             # redirect to a new URL:
-            return HttpResponseRedirect('sent')
+            return HttpResponseRedirect('sent/' + str(alert.id))
     # If a GET (or any other method) we'll create a blank form
     else:
-        form = AlertForm(**{'send_text': SEND_TEXT})
+        form = AmberAlertForm(**{'send_text': SEND_TEXT})
     context = BASE_CONTEXT
     context['title'] = 'Test Amber Alert'
     context['message_type'] = 'test'
@@ -73,6 +87,16 @@ def test_amber(request):
     context['parent_url'] = 'alertsystem:amber'
     context['form'] = form
     return render(request, 'alertsystem/confirmation.html', context=context)
+
+
+def test_amber_sent(request, amber_alert_id):
+    amber_alert = get_object_or_404(AmberAlertModel, pk=amber_alert_id)
+    title = 'Test Amber Alert'
+    name = 'TEST WARNING: Fake Amber Alert'
+    message = 'THIS IS A DRILL. %s %s, Age: %d, is currently missing. If you know of their whereabouts please contact 911 immediately' \
+              % (amber_alert.first_name, amber_alert.last_name, amber_alert.age)
+    context = _send_messages(title=title, name=name, message=message)
+    return render(request, 'alertsystem/sent.html', context=context)
 
 
 def natural(request):
@@ -315,12 +339,12 @@ def _send_messages(title=None, name=None, message=None):
         EMAIL,  # Add a Valid Email Here
         ['8088409878@tmomail.net'],  # Send to a T-Mobile Phone Number
     )
+    # Sending Message to the Console
     print("%s sent to all phones, news stations, televisions, radios, and sirens on Hawaii" % title)
     context = {
         'title': title,
         'name': name,
         'message': message,
     }
-
     return context
 

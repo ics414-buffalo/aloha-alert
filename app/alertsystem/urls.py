@@ -8,8 +8,10 @@ urlpatterns = [
 
     # Amber Alert URLs
     path('amber/', views.amber, name='amber'),
-    path('amber/real', views.real_amber, name='real_amber'),
-    path('amber/test', views.test_amber, name='test_amber'),
+    path('amber/real/', views.real_amber, name='real_amber'),
+    path('amber/real/sent/<int:amber_alert_id>', views.real_amber_sent, name='real_amber_sent'),
+    path('amber/test/', views.test_amber, name='test_amber'),
+    path('amber/test/sent/<int:amber_alert_id>', views.test_amber_sent, name='test_amber_sent'),
 
     # Natural Disaster URLs
     path('natural/', views.natural, name='natural'),
