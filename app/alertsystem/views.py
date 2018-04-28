@@ -18,11 +18,168 @@ def index(request):
     }
     return render(request, 'alertsystem/index.html', context=context)
 
+
+def natural(request):
+    context = {
+        'title': "Natural Disaster Threat"
+    }
+    return render(request, 'alertsystem/natural.html', context=context)
+
+
+def tsunami(request):
+    context = {
+        'title': "Tsunami Threat"
+    }
+    context['real_url'] = 'alertsystem:real_tsunami'
+    context['real_image'] = 'alertsystem/Tsunami2.png'
+    context['test_url'] = 'alertsystem:test_tsunami'
+    context['test_image'] = 'alertsystem/TsunamiTest.png'
+    context['parent_url'] = 'alertsystem:natural'
+    return render(request, 'alertsystem/real_or_test.html', context=context)
+
+
+def real_tsunami(request):
+    # If this is a POST request we, need to process the form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required
+            # redirect to a new URL:
+            return HttpResponseRedirect('sent')
+    # If a GET (or any other method) we'll create a blank form
+    else:
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Real Tsuanmi Threat'
+    context['message_type'] = 'real'
+    context['image'] = 'alertsystem/Tsuanmi2.png'
+    context['parent_url'] = 'alertsystem:natural'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
+
+
+def real_tsunami_sent(request):
+    title = 'Real Tsunami Threat'
+    name = 'WARNING: Real Tsunami Threat'
+    message = 'Incoming tsunami on the shores of Waikiki. Seek immediate shelter on higher ground'
+    context = _send_messages(title=title, name=name, message=message)
+    return render(request, 'alertsystem/sent.html', context=context)
+
+
+def test_tsunami(request):
+    # If this is a POST request we, need to process the form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required
+            # redirect to a new URL:
+            return HttpResponseRedirect('sent')
+    # If a GET (or any other method) we'll create a blank form
+    else:
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Test Tsunami Threat'
+    context['message_type'] = 'test'
+    context['image'] = 'alertsystem/TsunamiTest.png'
+    context['parent_url'] = 'alertsystem:natural'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
+
+
+def test_tsunami_sent(request):
+    title = 'Test Tsunami Threat'
+    name = 'TEST WARNING: Fake Tsunami Threat'
+    message = 'THIS IS A DRILL. Incoming tsunami on the shores of Waikiki. Seek immediate shelter on higher ground'
+    context = _send_messages(title=title, name=name, message=message)
+    return render(request, 'alertsystem/sent.html', context=context)
+
+
+def hurricane(request):
+    context = {
+        'title': "Hurricane Threat"
+    }
+    context['real_url'] = 'alertsystem:real_hurricane'
+    context['real_image'] = 'alertsystem/Hurricane.png'
+    context['test_url'] = 'alertsystem:test_hurricane'
+    context['test_image'] = 'alertsystem/HurricaneTest.png'
+    context['parent_url'] = 'alertsystem:natural'
+    return render(request, 'alertsystem/real_or_test.html', context=context)
+
+
+def real_hurricane(request):
+    # If this is a POST request we, need to process the form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required
+            # redirect to a new URL:
+            return HttpResponseRedirect('sent')
+    # If a GET (or any other method) we'll create a blank form
+    else:
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Real Hurricane Threat'
+    context['message_type'] = 'real'
+    context['image'] = 'alertsystem/Hurricane.png'
+    context['parent_url'] = 'alertsystem:natural'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
+
+
+def real_hurricane_sent(request):
+    title = 'Real Hurricane Threat'
+    name = 'WARNING: Real Hurricane Threat'
+    message = 'Incoming hurricane from North Shore. Seek immediate shelter on higher ground'
+    context = _send_messages(title=title, name=name, message=message)
+    return render(request, 'alertsystem/sent.html', context=context)
+
+
+def test_hurricane(request):
+    # If this is a POST request we, need to process the form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required
+            # redirect to a new URL:
+            return HttpResponseRedirect('sent')
+    # If a GET (or any other method) we'll create a blank form
+    else:
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Test Hurricane Threat'
+    context['message_type'] = 'test'
+    context['image'] = 'alertsystem/HurricaneTest.png'
+    context['parent_url'] = 'alertsystem:natural'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
+
+
+def test_hurricane_sent(request):
+    title = 'Test Hurricane Threat'
+    name = 'TEST WARNING: Fake Hurricane Threat'
+    message = 'THIS IS A DRILL. Incoming hurricane from North Shore. Seek immediate shelter on higher ground'
+    context = _send_messages(title=title, name=name, message=message)
+    return render(request, 'alertsystem/sent.html', context=context)
+
+
 def foreign(request):
     context = {
         'title': "Missile Threat"
     }
-    return render(request, 'alertsystem/foreign.html', context=context)
+    context['real_url'] = 'alertsystem:real_foreign'
+    context['real_image'] = 'alertsystem/missile.png'
+    context['test_url'] = 'alertsystem:test_foreign'
+    context['test_image'] = 'alertsystem/testMissile.png'
+    context['parent_url'] ='alertsystem:index'
+    return render(request, 'alertsystem/real_or_test.html', context=context)
 
 
 def real_foreign(request):
@@ -49,11 +206,11 @@ def real_foreign(request):
 
 def real_foreign_sent(request):
     title = 'Real Missile Threat'
-    name = 'WARNING: Real Missle Threat'
+    name = 'WARNING: Real Missile Threat'
     message = 'Incoming missile from North Korea. Seek immediate shelter on higher ground'
     context = _send_messages(title=title, name=name, message=message)
 
-    return render(request, 'alertsystem/sent_threat.html', context=context)
+    return render(request, 'alertsystem/sent.html', context=context)
 
 
 def test_foreign(request):
@@ -84,7 +241,7 @@ def test_foreign_sent(request):
     message = 'THIS IS A DRILL. Incoming missile from North Korea. Seek immediate shelter on higher ground'
     context = _send_messages(title=title, name=name, message=message)
 
-    return render(request, 'alertsystem/sent_threat.html', context=context)
+    return render(request, 'alertsystem/sent.html', context=context)
 
 
 def _send_messages(title=None, name=None, message=None):

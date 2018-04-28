@@ -5,46 +5,44 @@
     <div class="ui center aligned container">
         <div class="ui two item menu" style="margin-top: 1em">
             <a class="item">
-                <div class="ui huge header">REAL</div>
+                <div class="ui huge header">Tsunami</div>
             </a>
             <a class="item">
-                <div class="ui huge header">TEST</div>
+                <div class="ui huge header">Hurricane</div>
             </a>
         </div>
         <div class="ui grid" style="margin-top: 1em">
             <div class="eight wide column">
-                <a class="ui special centered link card" href="{% url real_url %}">
+                <a class="ui special centered link card" href="{% url "alertsystem:tsunami" %}">
                     <div class="blurring dimmable image">
                         <div class="ui dimmer">
                             <div class="content">
                                 <div class="center">
-                                    <div class="ui inverted button">Select Real Threat</div>
+                                    <div class="ui inverted button">Select Tsunami Threat</div>
                                 </div>
                             </div>
                         </div>
-                        <img src="{% static real_image %}">
+                        <img src="{% static "alertsystem/Tsunami2.png" %}">
                     </div>
                     <div class="content">
-                        <div class="header">{{ title }}</div>
-                        <div class="header">REAL</div>
+                        <div class="header">Tsunami</div>
                     </div>
                 </a>
             </div>
             <div class="eight wide column">
-                <a class="ui special centered link card" href="{% url test_url %}">
+                <a class="ui special centered link card" href="{% url "alertsystem:hurricane" %}">
                     <div class="blurring dimmable image">
                         <div class="ui dimmer">
                             <div class="content">
                                 <div class="center">
-                                    <div class="ui inverted button">Select Test Threat</div>
+                                    <div class="ui inverted button">Select Hurricane Threat</div>
                                 </div>
                             </div>
                         </div>
-                        <img src="{% static test_image %}">
+                        <img src="{% static "alertsystem/Hurricane.png" %}">
                     </div>
                     <div class="content">
-                        <div class="header">{{ title }}</div>
-                        <div class="header">TEST</div>
+                        <div class="header">Hurricane</div>
                     </div>
                 </a>
             </div>
