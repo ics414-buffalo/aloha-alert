@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from .forms import AlertForm
@@ -17,6 +17,62 @@ def index(request):
         'title': "Aloha Alert"
     }
     return render(request, 'alertsystem/index.html', context=context)
+
+
+def amber(request):
+    context = {
+        'title': "Amber Alert"
+    }
+    context['real_url'] = 'alertsystem:real_amber'
+    context['real_image'] = 'alertsystem/Amber.png'
+    context['test_url'] = 'alertsystem:test_amber'
+    context['test_image'] = 'alertsystem/AmberTest.png'
+    context['parent_url'] ='alertsystem:index'
+    return render(request, 'alertsystem/real_or_test.html', context=context)
+
+
+def real_amber(request):
+    # If this is a POST request we, need to process the form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required
+            # redirect to a new URL:
+            return HttpResponseRedirect('sent')
+    # If a GET (or any other method) we'll create a blank form
+    else:
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Real Amber Alert'
+    context['message_type'] = 'real'
+    context['image'] = 'alertsystem/Amber.png'
+    context['parent_url'] = 'alertsystem:amber'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
+
+
+def test_amber(request):
+    # If this is a POST request we, need to process the form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request:
+        form = AlertForm(request.POST, **{'send_text': SEND_TEXT})
+        # Check whether it's valid:
+        if form.is_valid():
+            # Process the data in form.cleaned_data as required
+            # redirect to a new URL:
+            return HttpResponseRedirect('sent')
+    # If a GET (or any other method) we'll create a blank form
+    else:
+        form = AlertForm(**{'send_text': SEND_TEXT})
+    context = BASE_CONTEXT
+    context['title'] = 'Test Amber Alert'
+    context['message_type'] = 'test'
+    context['image'] = 'alertsystem/AmberTest.png'
+    context['parent_url'] = 'alertsystem:amber'
+    context['form'] = form
+    return render(request, 'alertsystem/confirmation.html', context=context)
 
 
 def natural(request):
@@ -52,10 +108,10 @@ def real_tsunami(request):
     else:
         form = AlertForm(**{'send_text': SEND_TEXT})
     context = BASE_CONTEXT
-    context['title'] = 'Real Tsuanmi Threat'
+    context['title'] = 'Real Tsunami Threat'
     context['message_type'] = 'real'
-    context['image'] = 'alertsystem/Tsuanmi2.png'
-    context['parent_url'] = 'alertsystem:natural'
+    context['image'] = 'alertsystem/Tsunami2.png'
+    context['parent_url'] = 'alertsystem:tsunami'
     context['form'] = form
     return render(request, 'alertsystem/confirmation.html', context=context)
 
@@ -85,7 +141,7 @@ def test_tsunami(request):
     context['title'] = 'Test Tsunami Threat'
     context['message_type'] = 'test'
     context['image'] = 'alertsystem/TsunamiTest.png'
-    context['parent_url'] = 'alertsystem:natural'
+    context['parent_url'] = 'alertsystem:tsunami'
     context['form'] = form
     return render(request, 'alertsystem/confirmation.html', context=context)
 
@@ -127,7 +183,7 @@ def real_hurricane(request):
     context['title'] = 'Real Hurricane Threat'
     context['message_type'] = 'real'
     context['image'] = 'alertsystem/Hurricane.png'
-    context['parent_url'] = 'alertsystem:natural'
+    context['parent_url'] = 'alertsystem:hurricane'
     context['form'] = form
     return render(request, 'alertsystem/confirmation.html', context=context)
 
@@ -157,7 +213,7 @@ def test_hurricane(request):
     context['title'] = 'Test Hurricane Threat'
     context['message_type'] = 'test'
     context['image'] = 'alertsystem/HurricaneTest.png'
-    context['parent_url'] = 'alertsystem:natural'
+    context['parent_url'] = 'alertsystem:hurricane'
     context['form'] = form
     return render(request, 'alertsystem/confirmation.html', context=context)
 
