@@ -135,6 +135,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = '_^#b28i$4_v0#hn1#gkcf@qf@+8ar#oklc$o#eqt_4(63g2kyc'
 
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+EMAIL_HOST_PASSWORD = 'ihatemaplestory'
